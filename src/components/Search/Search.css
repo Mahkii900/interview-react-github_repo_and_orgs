@@ -1,0 +1,10 @@
+.Search {
+    height: 15%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2%;
+}
+
+.Search h2 {
+    margin: 0;
+}

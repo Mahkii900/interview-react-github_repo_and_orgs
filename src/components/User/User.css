@@ -1,0 +1,15 @@
+.User {
+    height: 85%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2%;
+}
+
+.User h2 {
+    margin: 0;
+}
+
+.User img {
+    margin-top: 5%;
+    max-height: 30%;;
+}
