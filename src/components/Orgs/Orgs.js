@@ -5,5 +5,5 @@ export default function Orgs() {
         <div>
             Orgs
         </div>
-    )
+    );
 }
