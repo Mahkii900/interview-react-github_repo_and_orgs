@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {setUsername} from '../../ducks/reducer'
+import {setUsername, setRepos, setOrgs} from '../../ducks/reducer'
 import axios from 'axios'
 
 class User extends Component {
@@ -21,19 +21,23 @@ class User extends Component {
             axios.get(`${BASE_URL}/users/${username}/orgs`)
         ])
         .then(([user, orgs]) => {
-            console.log(user.data, orgs.data)
+            this.props.setRepos(user.data)
+            this.props.setOrgs(orgs.data)
+            this.props.setUsername(this.state.username)
         })
-        // this.props.setUsername(this.state.username)
+        .catch((err) => {
+            alert('User ' + err.response.data.message)
+        })
     }
 
     render() {
         return (
             <div>
-                <input placeholder='username' onChange={(e) => this.handleUsernameChange(e)}/>
+                <input placeholder='GitHub Username' onChange={(e) => this.handleUsernameChange(e)}/>
                 <button onClick={() => this.handleSubmit()}>Submit</button>
             </div>
         );
     }
 }
 
-export default connect(null, {setUsername})(User)
+export default connect(null, {setUsername, setRepos, setOrgs})(User)
