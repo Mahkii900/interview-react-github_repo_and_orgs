@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import './User.css'
-import axios from 'axios'
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import './User.css';
+import axios from 'axios';
 
-class User extends Component {
+export class User extends Component {
     state = {
         name: '',
         pic: '',
@@ -13,7 +13,7 @@ class User extends Component {
     getUserInfo(username) {
         axios.get(`https://api.github.com/users/${username}`).then(res => {
             this.setState({name: res.data.name, pic: res.data.avatar_url, username: this.state.username})
-        })
+        });
     }
 
     render() {
@@ -39,18 +39,18 @@ class User extends Component {
                     </h4>
                 }
             </div>
-        )
+        );
     }
 
     componentDidUpdate() {
         if (this.props.username !== this.state.username) {
-            this.getUserInfo(this.props.username)
+            this.getUserInfo(this.props.username);
         }
     }
 }
 function mapStateToProps(reduxState) {
-    const {username} = reduxState
-    return {username}
+    const {username} = reduxState;
+    return {username};
 }
 
-export default connect(mapStateToProps)(User)
+export default connect(mapStateToProps)(User);

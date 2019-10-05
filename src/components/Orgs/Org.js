@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export default function Org(props) {
     let {name} = props
@@ -6,5 +6,5 @@ export default function Org(props) {
         <div>
             {name}
         </div>
-    )
+    );
 }

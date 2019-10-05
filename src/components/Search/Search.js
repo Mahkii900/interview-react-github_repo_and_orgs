@@ -1,10 +1,10 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {setUsername, setRepos, setOrgs} from '../../ducks/reducer'
-import axios from 'axios'
-import './Search.css'
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {setUsername, setRepos, setOrgs} from '../../ducks/reducer';
+import axios from 'axios';
+import './Search.css';
 
-class Search extends Component {
+export class Search extends Component {
     state = {
         username: ''
     }
@@ -14,9 +14,9 @@ class Search extends Component {
     }
     
     handleSubmit = (e) => {
-        e.preventDefault()
-        const BASE_URL = 'https://api.github.com'
-        const {username} = this.state
+        e.preventDefault();
+        const BASE_URL = 'https://api.github.com';
+        const {username} = this.state;
 
         axios.all([
             axios.get(`${BASE_URL}/users/${username}/repos?per_page=250`),
@@ -29,15 +29,15 @@ class Search extends Component {
         })
         .catch((err) => {
             alert('User ' + err.response.data.message)
-        })
+        });
     }
 
     render() {
         return (
             <div className='Search'>
-                <h2>Search User</h2>
+                <h2>Search Users</h2>
                 <form onSubmit={this.handleSubmit}>
-                    <input placeholder='GitHub Username' onChange={(e) => this.handleUsernameChange(e)}/>
+                    <input id='username_input' placeholder='GitHub Username' onChange={(e) => this.handleUsernameChange(e)}/>
                     <button type='submit'>Search</button>
                 </form>
             </div>
@@ -45,4 +45,4 @@ class Search extends Component {
     }
 }
 
-export default connect(null, {setUsername, setRepos, setOrgs})(Search)
+export default connect(null, {setUsername, setRepos, setOrgs})(Search);
